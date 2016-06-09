@@ -1,13 +1,21 @@
 console.log('file is linked');
 
-$('#1').html("<img src = ")
 
 for (var i =1; i < 82; i++ ){
 	$('#' + i).addClass('empty');
+	$('#' + i).html("<img src='./css/img/marble-yin-yang.svg' alt='Marble Yin Yang clip art'/>");
 	$('#' + i).click(function(){
-	console.log('that tickles' + i);
-	
-})};
+		var $curious = ($(this).attr('id'));
+		console.log('that tickles' + $curious);
+	})
+};
+
+$('#1').html("<img src='./css/img/marbles-simple-dots.svg' alt='Nicubunu-game-marbles-simple-dots'/>");
+
+for (var i=1; i < 16; i++){
+	$('#' + i).removeClass('empty');
+	$('#' + i).addClass('full');
+};
 
 // * Attempted loop with mixed result *
 // for (var i =4; i > 0; i--){

@@ -1,5 +1,7 @@
 console.log('file is linked');
 
+$('#1').html("<img src = ")
+
 for (var i =1; i < 82; i++ ){
 	$('#' + i).addClass('empty');
 	$('#' + i).click(function(){
@@ -7,7 +9,7 @@ for (var i =1; i < 82; i++ ){
 	
 })};
 
-
+// * Attempted loop with mixed result *
 // for (var i =4; i > 0; i--){
 // 	$("body").append('<ul></ul>')
 // 	console.log('variable i is ' + i)

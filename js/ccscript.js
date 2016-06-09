@@ -1,16 +1,31 @@
 console.log('file is linked');
 
-// Add click event adn class to board
-for (var i =1; i < 82; i++ ){
+var $marble, $space, $marbleId, $spaceId
+
+// Add click event add class to board
+for (var i =1; i < 82; i++ )
+{
 	$('#' + i).addClass('empty');
 	//$('#' + i).html("<img src='./css/img/marble-yin-yang.svg' alt='Marble Yin Yang clip art'/>");
-	$('#' + i).click(function(){
-		var $curious = ($(this).attr('id'));
-		console.log('that tickles' + $curious);
-		var $marble = $(this).attr("class");
-		console.log('marble found ' + $marble);
-		var $marble = $(this).attr("class");
-		console.log('marble not found ' + $marble);
+	$('#' + i).click(function()
+	{
+		// Preparing variables for comparison
+		if ($(this).attr("class") === "full")
+		{
+			$marble = $(this).attr("class");
+			$marbleId = ($(this).attr('id'));
+		}
+		else
+		{ 
+			$space = $(this).attr("class");
+			$spaceId = ($(this).attr('id'));
+		}
+		
+		// Checking if condition met to move piece
+		if (($marble === 'full') && ($space === 'empty'))
+		{
+			letsMove($marbleId,$spaceId);
+		}
 	})
 };
 
@@ -18,7 +33,7 @@ for (var i =1; i < 82; i++ ){
 
 
 // Adding marbles for players
-for (var i=2; i < 16; i++){
+for (var i=1; i < 16; i++){
 	$('#' + i).removeClass('empty');
 	$('#' + i).addClass('full');
 	$('#' + i).html("<img src='./css/img/marble-yin-yang.svg' alt='Marble Yin Yang clip art'/>");
@@ -29,6 +44,25 @@ for (var i=67; i < 82; i++){
 	$('#' + i).addClass('full');
 	$('#' + i).html("<img src='./css/img/marble-yin-yang.svg' alt='Marble Yin Yang clip art'/>");
 };
+
+// Moving the marble
+var letsMove = function(marbleId,spaceId)
+{
+	console.log('marble ID ' + marbleId);
+	console.log('space ID ' + $spaceId);
+	$('#' + spaceId).removeClass('empty');
+	$('#' + spaceId).addClass('full');
+	$('#' + spaceId).html("<img src='./css/img/marble-yin-yang.svg' alt='Marble Yin Yang clip art'/>");
+	$('#' + marbleId).removeClass('full');
+	$('#' + marbleId).addClass('empty');
+	$('#' + marbleId).html("");
+	$spaceId = "";
+	$marbleId = "";
+	$space = "";
+	$marble = "";
+	console.log('after move id is' + $spaceId);
+}
+
 // * Attempted loop with mixed result *
 // for (var i =4; i > 0; i--){
 // 	$("body").append('<ul></ul>')

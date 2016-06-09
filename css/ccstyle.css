@@ -1,11 +1,11 @@
 
-
+/*  Background image placed */
 html{
 	background: url("./img/sixpointstar.png") no-repeat center fixed;
 	background-size: 100% 100%;
 }
 
-
+/* Setup box for click event */
 div {
 	background: limegreen;
 	border: 1px solid black;
@@ -26,6 +26,10 @@ li {
 	display: inline-block;
 }
 
+img {
+	width: 2.5em;
+	height: 2.5em;
+}
 
 /* Layout with Flexbox */
 /*ul {

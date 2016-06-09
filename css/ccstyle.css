@@ -1,0 +1,40 @@
+
+
+html{
+	background: url("./img/sixpointstar.png") no-repeat center fixed;
+	background-size: 100% 100%;
+}
+
+
+div {
+	background: limegreen;
+	border: 1px solid black;
+	width: 2em;
+	height: 2em;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+ul {
+	text-align: center;
+	padding: 0;
+}
+
+
+li {
+	list-style-type: none;
+	display: inline-block;
+}
+
+
+/* Layout with Flexbox */
+/*ul {
+  display: flex;
+  justify-content: center;
+}
+
+ul li {
+  padding: 0 8px;
+  list-style-type: none;
+}*/
+  

@@ -1,3 +1,9 @@
+
+
+
+for letsPlay = function()
+{
+
 // established variables
 var $marble, $space, $marbleId, $spaceId
 var movedAll = 0; 
@@ -25,6 +31,7 @@ for (var i =1; i < 82; i++ )
 		if (($marble === 'full') && ($space === 'empty'))
 		{
 			letsMove($marbleId,$spaceId);
+			doWeHaveWinner();
 		}
 	})
 };
@@ -45,54 +52,76 @@ for (var i=67; i < 82; i++){
 	$('#' + i).attr( 'title', 'player2' );
 };
 
-var test =$('.title');
-console.log('Title is ' + test.length);
 
 // Moving the marble
 var letsMove = function(marbleId,spaceId)
 {
-	var $innerMarble = $('#' + marbleId).html();
-	var $innerSpace = $('#' + spaceId).html();
 	if ((spaceId - marbleId) === 10 || (marbleId - spaceId) === 10 || (spaceId - marbleId) === 12 || (marbleId - spaceId) === 12 || (spaceId - marbleId) === 14 || (marbleId - spaceId) === 14 || (spaceId - marbleId) === 16 || (marbleId - spaceId) === 16 || (spaceId - marbleId) === 17 || (marbleId - spaceId) === 17) 
 	{
 		alert('try again');
 	}
 	else if ((spaceId - marbleId) < 10 || (marbleId - spaceId) < 10) 
 	{
-		$('#' + spaceId).removeClass('empty');
-		$('#' + spaceId).addClass('full');
-		$('#' + spaceId).html($innerMarble);
-		$('#' + marbleId).removeClass('full');
-		$('#' + marbleId).addClass('empty');
-		$('#' + marbleId).html($innerSpace);
-		$spaceId = "";
-		$marbleId = "";
-		$space = "";
-		$marble = "";
+		movingMarble(marbleId,spaceId);
 	}
 	else if ((spaceId - marbleId) > 10 || (marbleId - spaceId) > 10) {
 		console.log('good move');
-		$('#' + spaceId).removeClass('empty');
-		$('#' + spaceId).addClass('full');
-		$('#' + spaceId).html($innerMarble);
-		$('#' + marbleId).removeClass('full');
-		$('#' + marbleId).addClass('empty');
-		$('#' + marbleId).html($innerSpace);
-		$spaceId = "";
-		$marbleId = "";
-		$space = "";
-		$marble = "";
+		movingMarble(marbleId,spaceId);
 	}
 }
 
-for (var i=1; i < 16; i++){
-	var x = document.getElementById("#" + i).getAttribute("title");
-	if ( x === "player1"){
+
+var doWeHaveWinner = function()
+{
+
+	for (var i=67; i < 82; i++)
+	{
+ 		var $title = $("#" + i).attr("title");
+ 		console.log($title);
+		if ( $title === "player1")
+		{
 		movedAll += 1;
+		}
 	}
+	weHaveWinner();
+
 }
-if (movedAll === 15){
-	alert ('Player 1 is the winner');
+
+
+var weHaveWinner = function()
+{
+	if (movedAll === 15)
+	{
+		alert ('Player 1 is the winner');
+	}	
+}
+
+var movingMarble = function(marbleId,spaceId)
+{
+	var $innerMarble = $('#' + marbleId).html();
+	var $innerSpace = $('#' + spaceId).html();
+	var $titleMarble = $("#" + marbleId).attr("title");
+	$('#' + spaceId).removeClass('empty');
+	$('#' + spaceId).addClass('full');
+	$('#' + spaceId).html($innerMarble);
+	$("#" + spaceId).attr("title", $titleMarble);
+	$('#' + marbleId).removeClass('full');
+	$('#' + marbleId).addClass('empty');
+	$('#' + marbleId).html($innerSpace);
+	$('#' + marbleId).removeAttr('title');
+	resetVariables();
+}
+
+var resetVariables = function()
+{
+	$spaceId = "";
+	$marbleId = "";
+	$space = "";
+	$marble = "";
+	$titleMarble = "";
+	movedAll = 0;
+}
+
 }
 
 // * Attempted loop with mixed result *

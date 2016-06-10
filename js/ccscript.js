@@ -1,4 +1,3 @@
-console.log('file is linked');
 
 var $marble, $space, $marbleId, $spaceId
 
@@ -48,19 +47,22 @@ for (var i=67; i < 82; i++){
 // Moving the marble
 var letsMove = function(marbleId,spaceId)
 {
+	console.log('difference is ' + (spaceId - marbleId));
 	console.log('marble ID ' + marbleId);
 	console.log('space ID ' + $spaceId);
-	$('#' + spaceId).removeClass('empty');
-	$('#' + spaceId).addClass('full');
-	$('#' + spaceId).html("<img src='./css/img/marble-yin-yang.svg' alt='Marble Yin Yang clip art'/>");
-	$('#' + marbleId).removeClass('full');
-	$('#' + marbleId).addClass('empty');
-	$('#' + marbleId).html("");
-	$spaceId = "";
-	$marbleId = "";
-	$space = "";
-	$marble = "";
-	console.log('after move id is' + $spaceId);
+	if ((spaceId - marbleId) < 10 || (marbleId - spaceId) < 10) 
+	{
+		$('#' + spaceId).removeClass('empty');
+		$('#' + spaceId).addClass('full');
+		$('#' + spaceId).html("<img src='./css/img/marble-yin-yang.svg' alt='Marble Yin Yang clip art'/>");
+		$('#' + marbleId).removeClass('full');
+		$('#' + marbleId).addClass('empty');
+		$('#' + marbleId).html("");
+		$spaceId = "";
+		$marbleId = "";
+		$space = "";
+		$marble = "";
+	}
 }
 
 // * Attempted loop with mixed result *

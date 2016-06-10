@@ -10,37 +10,49 @@ $(document).ready(function()
 var letsPlay = function()
 {
 
-// established variables
-var $marble, $space, $marbleId, $spaceId
-var movedAll = 0; 
+	// established variables
+	var $marble, $space, $marbleId, $spaceId, $marblePlayer
+	var movedAll = 0; 
+	var whosePlaying = "player1";
+	var moveCounter = 1;
 
-// Add click event add class to board
-for (var i =1; i < 82; i++ )
-{
-	$('#' + i).addClass('empty');
-	// $('#' + i).html("<img src='./css/img/marble-yin-yang.svg' alt='Marble Yin Yang clip art'/>");
-	$('#' + i).click(function()
+	// Add click event add class to board
+	for (var i =1; i < 82; i++ )
 	{
-		// Preparing variables for comparison
-		if ($(this).attr("class") === "full")
+		$('#' + i).addClass('empty');
+		$('#' + i).click(function()
 		{
-			$marble = $(this).attr("class");
-			$marbleId = ($(this).attr('id'));
-		}
-		else
-		{ 
-			$space = $(this).attr("class");
-			$spaceId = ($(this).attr('id'));
-		}
+			// Preparing variables for comparison
+			if ($(this).attr("class") === "full")
+			{
+				$marble = $(this).attr("class");
+				$marbleId = ($(this).attr('id'));
+				$marblePlayer = ($(this).attr("title"));
+			}
+			else
+			{ 
+				$space = $(this).attr("class");
+				$spaceId = ($(this).attr('id'));
+			}
 		
-		// Checking if condition met to move piece
-		if (($marble === 'full') && ($space === 'empty'))
-		{
-			letsMove($marbleId,$spaceId);
-			doWeHaveWinner();
-		}
-	})
-};
+			// Checking if condition met to move piece
+			if (($marble === 'full') && ($space === 'empty') && ($marblePlayer === whosePlaying))
+			{
+				letsMove($marbleId,$spaceId);
+				doWeHaveWinner();
+				moveCounter++
+				if (moveCounter % 2 === 0)
+				{
+					whosePlaying = 'player2';
+				}
+				else
+				{
+					whosePlaying = 'player1';
+				}
+				displayPlayer();
+			}
+		})
+	};
 
 
 // Adding marbles for player1
@@ -126,6 +138,10 @@ var resetVariables = function()
 	$marble = "";
 	$titleMarble = "";
 	movedAll = 0;
+}
+
+var displayPlayer = function(){
+	$('button').html(whosePlaying + ' turn');
 }
 
 }

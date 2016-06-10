@@ -1,5 +1,6 @@
 body {
 	overflow: hidden;
+	padding-top: 1.5em;
 }
 
 /* Defining button */
@@ -22,8 +23,8 @@ html{
 /* Setup box for click event */
 div {
 	border: 1px solid black;
-	width: .8em;
-	height: .8em;
+	width: 1em;
+	height: 1em;
 	margin-right: auto;
 	margin-left: auto;
 	background-color: beige;
@@ -41,8 +42,8 @@ li {
 }
 
 img {
-	width: 1em;
-	height: 1em;
+	width: 1.5em;
+	height: 1.5em;
 }
 
 /* Layout with Flexbox */

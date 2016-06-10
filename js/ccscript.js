@@ -1,7 +1,13 @@
 
+$(document).ready(function()
+{
+	$('button').click(function() 
+	{
+		letsPlay();
+	});
+});
 
-
-for letsPlay = function()
+var letsPlay = function()
 {
 
 // established variables

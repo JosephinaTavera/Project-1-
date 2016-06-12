@@ -13,7 +13,8 @@ var letsPlay = function()
 
 	// established variables
 	var $marble, $space, $marbleId, $spaceId, $marblePlayer
-	var movedAll = 0; 
+	var movedAllPlayer1 = 0; 
+	var movedAllPlayer2 = 0; 
 	var whosePlaying = "player1";
 	var moveCounter = 1;
 
@@ -21,7 +22,7 @@ var letsPlay = function()
 	{
 		$('button').html(whosePlaying + ' turn');
 	}
-	
+
 	displayPlayer();
 
 	// Add click event add class to board
@@ -29,26 +30,30 @@ var letsPlay = function()
 	{
 		$('#' + i).addClass('empty');
 		$('#' + i).click(function()
-		{
-			// Preparing variables for comparison
-			if ($(this).attr("class") === "full")
-			{
-				$marble = $(this).attr("class");
-				$marbleId = ($(this).attr('id'));
-				$marblePlayer = ($(this).attr("title"));
-			}
-			else
-			{ 
-				$space = $(this).attr("class");
-				$spaceId = ($(this).attr('id'));
-			}
+	{
+
+	// Preparing variables for comparison
+	if ($(this).attr("class") === "full")
+	{
+		$marble = $(this).attr("class");
+		$marbleId = ($(this).attr('id'));
+		$marblePlayer = ($(this).attr("title"));
+	}
+	else
+	{ 
+		$space = $(this).attr("class");
+		$spaceId = ($(this).attr('id'));
+	}
 		
 			// Checking if conditions met to move piece
 			if (($marble === 'full') && ($space === 'empty') && ($marblePlayer === whosePlaying))
 			{
 				letsMove($marbleId,$spaceId);
 				doWeHaveWinner();
+				resetVariables();
 				moveCounter++
+
+				// Switching players
 				if (moveCounter % 2 === 0)
 				{
 					whosePlaying = 'player2';
@@ -71,6 +76,7 @@ var letsPlay = function()
 		$('#' + i).attr( 'title', 'player1' );
 	};
 
+    // Adding marbles for player2
 	for (var i=67; i < 82; i++){
 		$('#' + i).removeClass('empty');
 		$('#' + i).addClass('full');
@@ -82,31 +88,46 @@ var letsPlay = function()
 	// Moving the marble
 	var letsMove = function(marbleId,spaceId)
 	{
-		if ((spaceId - marbleId) === 10 || (marbleId - spaceId) === 10 || (spaceId - marbleId) === 12 || (marbleId - spaceId) === 12 || (spaceId - marbleId) === 14 || (marbleId - spaceId) === 14 || (spaceId - marbleId) === 16 || (marbleId - spaceId) === 16 || (spaceId - marbleId) === 17 || (marbleId - spaceId) === 17) 
+		if ((spaceId - marbleId) === 10 || (marbleId - spaceId) === 10 || (spaceId - marbleId) === 12 || (marbleId - spaceId) === 12 || (spaceId - marbleId) === 14 || (marbleId - spaceId) === 14 || (spaceId - marbleId) === 16 || (marbleId - spaceId) === 16 || (spaceId - marbleId) === 17 || (marbleId - spaceId) === 17 || (spaceId - marbleId) > 18 || (marbleId - spaceId) > 18) 
 		{
-			alert('try again');
+			alert('Invalid move, try again');
+			resetVariables();
+			moveCounter--;
 		}
 		else if ((spaceId - marbleId) < 10 || (marbleId - spaceId) < 10) 
 		{
 			movingMarble(marbleId,spaceId);
 		}
 		else if ((spaceId - marbleId) > 10 || (marbleId - spaceId) > 10) {
-			console.log('good move');
 			movingMarble(marbleId,spaceId);
 		}
 	}
 
 
 	var doWeHaveWinner = function()
-	{
+	{	
 
-		for (var i=67; i < 82; i++)
+		if (whosePlaying === 'player1')
 		{
- 			var $title = $("#" + i).attr("title");
- 			console.log($title);
-			if ( $title === "player1")
+			for (var i=67; i < 82; i++)
+			{	
+				var $title1 = $("#" + i).attr("title");
+				if ( $title1 === 'player1')
+				{
+				movedAllPlayer1 += 1;
+
+				}
+			}
+		}
+		else if (whosePlaying === 'player2')
+		{
+			for (var j=1; j < 16; j++)
 			{
-			movedAll += 1;
+				var $title2 = $("#" + j).attr("title");
+				if ( $title2 === "player2")
+				{
+				movedAllPlayer2 += 1;
+				}
 			}
 		}
 		weHaveWinner();
@@ -116,10 +137,14 @@ var letsPlay = function()
 
 	var weHaveWinner = function()
 	{
-		if (movedAll === 15)
+		if (movedAllPlayer1 === 15  )
 		{
 			alert ('Player 1 is the winner');
 		}	
+		else if (movedAllPlayer2 === 15)
+		{
+			alert ('Player 2 is the winner');
+		}
 	}
 
 	var movingMarble = function(marbleId,spaceId)
@@ -135,7 +160,6 @@ var letsPlay = function()
 		$('#' + marbleId).addClass('empty');
 		$('#' + marbleId).html($innerSpace);
 		$('#' + marbleId).removeAttr('title');
-		resetVariables();
 	}
 
 	var resetVariables = function()
@@ -145,7 +169,8 @@ var letsPlay = function()
 		$space = "";
 		$marble = "";
 		$titleMarble = "";
-		movedAll = 0;
+		movedAllPlayer2 = 0;
+		movedAllPlayer1 = 0;
 	}
 
 	

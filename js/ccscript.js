@@ -139,12 +139,17 @@ var letsPlay = function()
 	{
 		if (movedAllPlayer1 === 15  )
 		{
-			alert ('Player 1 is the winner');
+			notifyOfWinner();
+			
 		}	
 		else if (movedAllPlayer2 === 15)
 		{
+			notifyOfWinner();
 			alert ('Player 2 is the winner');
+			
 		}
+
+
 	}
 
 	var movingMarble = function(marbleId,spaceId)
@@ -174,6 +179,14 @@ var letsPlay = function()
 	}
 
 	
+	var notifyOfWinner = function() 
+	{
+		for (var i =1; i < 82; i++ )
+		{
+		$('#' + i).addClass('gameOver');
+		}
+		$('button').html('We have a Winner!');
+	}
 
 }
 

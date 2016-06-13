@@ -4,7 +4,7 @@ body {
 }
 
 /* Defining button */
-button {
+#start {
 	background-color: violet;
 	width: 25%;
 	height: 25%;
@@ -46,14 +46,28 @@ img {
 	height: 1em;
 }
 
-/* Layout with Flexbox */
-/*ul {
-  display: flex;
-  justify-content: center;
+
+/* Setup player tag */
+.player {  
+
+  list-style: none;  
+
+  margin: -10em 0 0 40em;  
+
+  border-top: solid 15px #fff;  
+
+  border-left: solid 20px #fff;  
+
+  position: relative;  
+
+  width: 7em;  
+
 }
 
-ul li {
-  padding: 0 8px;
-  list-style-type: none;
-}*/
-  
+/* Created to keep player tag on bottm right */
+#placeHolder {
+	width: 25%;
+	height: 25%;
+	visibility: hidden;
+}
+

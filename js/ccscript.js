@@ -72,7 +72,7 @@ var letsPlay = function()
 	for (var i=1; i < 16; i++){
 		$('#' + i).removeClass('empty');
 		$('#' + i).addClass('full');
-		$('#' + i).html("<img src='./css/img/redmarble.png' alt='Marble Yin Yang clip art'/>");
+		$('#' + i).html("<img src='./css/img/redmarble.png' alt='nicubunu-Game-marbles-simple-dots'/>");
 		$('#' + i).attr( 'title', 'player1' );
 	};
 
@@ -80,7 +80,7 @@ var letsPlay = function()
 	for (var i=67; i < 82; i++){
 		$('#' + i).removeClass('empty');
 		$('#' + i).addClass('full');
-		$('#' + i).html("<img src='./css/img/greenmarble.png' alt='Marble Yin Yang clip art'/>");
+		$('#' + i).html("<img src='./css/img/greenmarble.png' alt='nicubunu-Game-marbles-simple-dots'/>");
 		$('#' + i).attr( 'title', 'player2' );
 	};
 
@@ -181,11 +181,16 @@ var letsPlay = function()
 	
 	var notifyOfWinner = function() 
 	{
+		// Change class to lock board
 		for (var i =1; i < 82; i++ )
 		{
 		$('#' + i).addClass('gameOver');
 		}
+
+		//Notifying player of winner
 		$('button').html('We have a Winner!');
+		$('body').html('<h1>' + whosePlaying + '</h1>');
+		return
 	}
 
 }

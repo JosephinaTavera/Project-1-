@@ -140,15 +140,17 @@ var letsPlay = function()
 		if (movedAllPlayer1 === 15  )
 		{
 			notifyOfWinner();
-			
+			alert ('Player 1 is the winner');
+			$('#start').hide();
+		
 		}	
 		else if (movedAllPlayer2 === 15)
 		{
 			notifyOfWinner();
 			alert ('Player 2 is the winner');
+			$('#start').hide();
 			
 		}
-
 
 	}
 
@@ -189,8 +191,8 @@ var letsPlay = function()
 
 		//Notifying player of winner
 		$('button').html('We have a Winner!');
-		$('body').html('<h1>' + whosePlaying + '</h1>');
-		return
+		$('div').hide();
+		$('#37').html('<h1>' + whosePlaying + '</h1>').show();
 	}
 
 }
